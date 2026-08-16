@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: oklch(99% 0.003 240);
+  --color-bg-elevated: oklch(100% 0 0);
+  --color-fg: oklch(15% 0.01 240);
+  --color-fg-muted: oklch(45% 0.008 240);
+  --color-fg-subtle: oklch(65% 0.006 240);
+  --color-border: oklch(92% 0.004 240);
+  --color-border-strong: oklch(85% 0.005 240);
+  --color-accent: oklch(55% 0.18 145);
+  --color-accent-fg: oklch(98% 0.02 145);
+
+  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, monospace;
+
+  --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv11", "ss01", "ss03";
+  }
+
+  ::selection {
+    background-color: oklch(55% 0.18 145 / 0.18);
+    color: var(--color-fg);
+  }
+
+  *:focus-visible {
+    outline: 1.5px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
+}
+
+@layer utilities {
+  .hairline {
+    border-color: var(--color-border);
+    border-width: 1px;
+  }
+
+  @supports (border-width: 0.5px) {
+    .hairline {
+      border-width: 0.5px;
+    }
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
